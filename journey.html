@@ -68,6 +68,18 @@
   .shareRow{display:flex;gap:8px;margin-top:10px;}
   .shareRow .wa{flex:1;background:#25D366;color:#fff;box-shadow:0 3px 0 #128C4A;}
   .shareRow .cp{flex:1;}
+  #endCard{position:absolute;inset:0;background:linear-gradient(160deg,#22309b,#0f1750);
+    display:none;align-items:center;justify-content:center;text-align:center;padding:20px;z-index:9;}
+  #endCard.on{display:flex;animation:fadeIn .8s ease both;}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  #endCard .inner{color:#fff;animation:rise .9s cubic-bezier(.2,1,.3,1) both;}
+  @keyframes rise{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
+  #endCard b{display:block;font-size:min(6vw,30px);letter-spacing:.02em;margin-bottom:14px;}
+  #endCard span{display:block;font-size:min(3.2vw,14px);color:#b9c8ef;letter-spacing:.14em;text-transform:uppercase;}
+  #endCard .num{display:block;font-size:min(9vw,46px);font-weight:bold;color:#fff;letter-spacing:.04em;
+    margin:6px 0 10px;text-decoration:none;text-shadow:0 4px 22px rgba(120,160,255,.5);}
+  #endCard em{display:block;font-style:normal;font-size:min(4vw,18px);color:#8fd0ff;letter-spacing:.2em;}
+  #endCard button{max-width:210px;margin:16px auto 0;background:#fff;color:#22309b;box-shadow:0 3px 0 #b9c2dd;}
   #dialog{position:absolute;left:0;right:0;bottom:0;padding:14px 16px 20px;cursor:pointer;
     background:linear-gradient(to top,rgba(9,16,44,.97),rgba(9,16,44,.8));color:#fff;display:none;}
   #dialog.on{display:block;}
@@ -235,7 +247,7 @@
   <canvas id="cv"></canvas>
 
   <div id="objective">Walk to the counter</div>
-  <div id="bag"><h4>Your basket</h4><ul id="bagList"><li class="empty">nothing yet</li></ul></div>
+  <div id="bag"><h4>Customer journey</h4><ul id="bagList"></ul></div>
 
   <div id="pad">
     <div class="dpad">
@@ -244,7 +256,7 @@
       <div class="btn rt" id="rightBtn">▶</div>
       <div class="btn dn" id="downBtn">▼</div>
     </div>
-    <div class="btn" id="actBtn">TALK</div>
+    <div class="btn" id="actBtn">E</div>
   </div>
 
   <div id="cine"><i class="bar top"></i><i class="bar bot"></i><span class="skip">tap to skip</span></div>
@@ -254,14 +266,21 @@
     <button id="shareBtn" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 7 9.6a5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.2-.1-.4-.2Z"/></svg><span>Share</span></button>
     <button id="contactBtn" title="Franchise enquiries on WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 7 9.6a5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.2-.1-.4-.2Z"/></svg><span>Contact Servaid</span></button>
   </div>
+  <div id="endCard"><div class="inner">
+    <b>Thank You for Choosing Servaid</b>
+    <span>Order your medicines conveniently at</span>
+    <a class="num" href="tel:04211162 6364">042 111 62 63 64</a>
+    <em>Servaid Pharmacy</em>
+    <button class="act" id="endAgain">Visit again</button>
+  </div></div>
   <div id="dialog"><div id="speaker"></div><div id="line"></div><div id="next">tap to continue ▸</div></div>
   <div id="modal"><div class="card" id="card"></div></div>
 
   <div id="title">
     <div class="veil"></div>
     <div class="in">
-      <div class="logo">The store visit</div>
-      <p>Fill a prescription, get counselled by the pharmacist, then pay by cash or card.</p>
+      <div class="logo">Customer journey</div>
+      <p>Walk the flagship store: ask at Counter 1, pay by card at Counter 2, pick up consumer items, then pay cash and leave.</p>
       <p class="fine">Tap the floor to walk there · arrow keys and the pad also work · space or TALK to interact<br>Demo for staff training — dosage lines are illustrative, not medical advice.</p>
       <button class="act" id="startBtn" style="max-width:250px">Enter the store</button>
     </div>
@@ -330,7 +349,7 @@ const cam={x:0,z:-1.2};
 function proj(x,y,z){
   let dz=z-cam.z; if(dz<0.28)dz=0.28;
   const s=F/dz;
-  return {x:W/2+(x-cam.x)*s, y:HZ-(y-CAMY)*s, s:s, d:dz};
+  return {x:W/2-(x-cam.x)*s, y:HZ-(y-CAMY)*s, s:s, d:dz};
 }
 function quad(a,b,c,d,fill,stroke,lw){
   ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.lineTo(c.x,c.y);ctx.lineTo(d.x,d.y);ctx.closePath();
@@ -412,6 +431,35 @@ function skyFloor(){
   const b0=proj(XL+0.25,0.9,ZB-0.02),b1=proj(XL+0.25,2.35,ZB-0.02),
         b2=proj(XL+2.1,2.35,ZB-0.02),b3=proj(XL+2.1,0.9,ZB-0.02);
   quad(b0,b1,b2,b3,vgrad(b1,b3,'#3a2ab4','#241879'));
+  // Servaid logo panel at the far end
+  const o0=proj(XL+2.3,0.9,ZB-0.02),o1=proj(XL+2.3,2.35,ZB-0.02),
+        o2=proj(XR-0.05,2.35,ZB-0.02),o3=proj(XR-0.05,0.9,ZB-0.02);
+  quad(o0,o1,o2,o3,'#ffffff','#c3cfdd',1.4);
+  const os=proj(XL+3.6,1.9,ZB).s;
+  if(os>60){
+    ctx.save();
+    const cx=(o0.x+o2.x)/2, cy=(o0.y+o1.y)/2;
+    const fs=0.19*os;
+    ctx.font='bold '+fs+'px Trebuchet MS';
+    const wm=ctx.measureText('Servaid').width;
+    const s2=fs*0.30, gap=fs*0.34;
+    const total=wm+gap+s2*3;
+    const x0=cx-total/2;
+    ctx.textAlign='left';
+    ctx.fillStyle='#22309b';
+    ctx.fillText('Servaid',x0,cy+fs*0.18);
+    ctx.fillStyle='#5a6a86';ctx.font='bold '+(fs*0.30)+'px Trebuchet MS';
+    ctx.fillText('Pharmacy',x0+fs*0.12,cy+fs*0.54);
+    // red cross, clear of the wordmark
+    const kx=x0+wm+gap+s2*1.5, ky=cy-fs*0.06;
+    ctx.fillStyle='#E03131';
+    ctx.fillRect(kx-s2*1.5,ky-s2*0.5,s2*3,s2);
+    ctx.fillRect(kx-s2*0.5,ky-s2*1.5,s2,s2*3);
+    ctx.fillStyle='#fff';
+    ctx.fillRect(kx-s2*1.05,ky-s2*0.18,s2*2.1,s2*0.36);
+    ctx.fillRect(kx-s2*0.18,ky-s2*1.05,s2*0.36,s2*2.1);
+    ctx.restore();
+  }
   const bs=proj(XL+1.1,1.75,ZB).s;
   ctx.fillStyle='#fff';ctx.font='bold '+(0.30*bs)+'px Trebuchet MS';ctx.textAlign='center';
   ctx.fillText('Servaid',(b0.x+b2.x)/2,(b0.y+b1.y)/2-0.06*bs);
@@ -477,18 +525,48 @@ function medicineWall(){
     }
   });
 }
+function column(z){
+  if(z<cam.z+3.8||z>cam.z+16)return;
+  const x0=-1.06,x1=-0.72;
+  const near=proj(x0,0,z),nearT=proj(x0,YC,z);
+  quad(proj(x0,0,z),proj(x0,YC,z),proj(x0,YC,z+0.42),proj(x0,0,z+0.42),
+    vgrad(proj(x0,YC,z),proj(x0,0,z+0.42),'#2f42c4','#1a2478'),'#141c66',1);
+  quad(proj(x0,0,z),proj(x0,YC,z),proj(x1,YC,z),proj(x1,0,z),
+    vgrad(proj(x0,YC,z),proj(x1,0,z),'#3a4fd8','#22309b'),'#141c66',1);
+  const c=proj((x0+x1)/2,1.55,z-0.005);
+  if(c.s>110&&c.s<300){
+    ctx.save();ctx.textAlign='center';
+    ctx.fillStyle='#fff';ctx.font='bold '+Math.min(26,0.085*c.s)+'px Trebuchet MS';
+    ctx.fillText('Free',c.x,c.y-0.16*c.s);
+    ctx.fillText('Home',c.x,c.y-0.03*c.s);
+    ctx.fillText('Delivery',c.x,c.y+0.10*c.s);
+    ctx.fillStyle='#cfe0ff';ctx.font='bold '+Math.min(15,0.055*c.s)+'px Trebuchet MS';
+    ctx.fillText('042 111 62 63 64',c.x,c.y+0.26*c.s);
+    const l=proj((x0+x1)/2,0.72,z-0.005);
+    ctx.fillStyle='#fff';ctx.font='bold '+Math.min(30,0.1*l.s)+'px Trebuchet MS';
+    ctx.fillText('Servaid',l.x,l.y);
+    ctx.fillStyle='#E03131';ctx.font='bold '+Math.min(26,0.09*l.s)+'px Trebuchet MS';
+    ctx.fillText('+',l.x+Math.min(52,0.19*l.s),l.y);
+    ctx.restore();
+  }
+}
 function counterChunk(z0,z1){
   if(z0<=CTR_Z0+0.01&&z0>cam.z+0.5){
     quad(proj(CTR_X,0,z0),proj(CTR_X,CTR_Y,z0),proj(XL,CTR_Y,z0),proj(XL,0,z0),
       vgrad(proj(CTR_X,CTR_Y,z0),proj(XL,0,z0),'#4634c9','#221572'));
   }
-  const grad=vgrad(proj(CTR_X,CTR_Y,z0),proj(CTR_X,0,z0),'#5241d8','#221572');
+  const grad=vgrad(proj(CTR_X,CTR_Y,z0),proj(CTR_X,0,z0),'#ffffff','#dbe3ee');
   // front face towards the aisle
   quad(proj(CTR_X,0,z0),proj(CTR_X,CTR_Y-0.07,z0),proj(CTR_X,CTR_Y-0.07,z1),proj(CTR_X,0,z1),grad);
   // gloss sweep
   const g0=proj(CTR_X-0.001,CTR_Y*0.62,z0),g1=proj(CTR_X-0.001,CTR_Y*0.44,z0),
         g2=proj(CTR_X-0.001,CTR_Y*0.44,z1),g3=proj(CTR_X-0.001,CTR_Y*0.62,z1);
   quad(g0,g1,g2,g3,'rgba(255,255,255,.13)');
+  // warm strip light under the counter lip, as in the store
+  quad(proj(CTR_X-0.002,CTR_Y-0.16,z0),proj(CTR_X-0.002,CTR_Y-0.08,z0),
+       proj(CTR_X-0.002,CTR_Y-0.08,z1),proj(CTR_X-0.002,CTR_Y-0.16,z1),'rgba(255,214,150,.85)');
+  quad(proj(CTR_X-0.004,CTR_Y-0.34,z0),proj(CTR_X-0.004,CTR_Y-0.14,z0),
+       proj(CTR_X-0.004,CTR_Y-0.14,z1),proj(CTR_X-0.004,CTR_Y-0.34,z1),'rgba(255,206,130,.18)');
   // white worktop
   quad(proj(CTR_X,CTR_Y-0.07,z0),proj(CTR_X,CTR_Y,z0),proj(CTR_X,CTR_Y,z1),proj(CTR_X,CTR_Y-0.07,z1),'#ffffff');
   quad(proj(CTR_X,CTR_Y,z0),proj(XL,CTR_Y,z0),proj(XL,CTR_Y,z1),proj(CTR_X,CTR_Y,z1),
@@ -509,10 +587,10 @@ function counterChunk(z0,z1){
   if(p.s>90&&cz>cam.z+1.5){
     ctx.save();ctx.translate(p.x,p.y);
     const sc=p.s/860;
-    ctx.fillStyle='#fff';ctx.font='bold '+(30*sc*2.4)+'px Trebuchet MS';ctx.textAlign='center';
+    ctx.fillStyle='#22309b';ctx.font='bold '+(24*sc*2.4)+'px Trebuchet MS';ctx.textAlign='center';
     ctx.fillText('Servaid',0,0);
-    ctx.fillStyle='#E03131';ctx.font='bold '+(26*sc*2.4)+'px Trebuchet MS';
-    ctx.fillText('✚',44*sc*2.4,2*sc*2.4);
+    ctx.fillStyle='#E03131';ctx.font='bold '+(21*sc*2.4)+'px Trebuchet MS';
+    ctx.fillText('✚',38*sc*2.4,2*sc*2.4);
     ctx.restore();ctx.textAlign='left';
   }
 }
@@ -880,171 +958,231 @@ function openModal(photo,caption,html){
 }
 function closeModal(){modal.classList.remove('on');hideBtns(dlg.classList.contains('on'));}
 
-/* ---------- shelf picking ---------- */
-function openPicker(){
-  const all=RX.concat(DECOY).map((m,i)=>({m,k:prand(i*17)})).sort((a,b)=>a.k-b.k).map(o=>o.m);
-  openModal('hall','Prescription counter',
-    '<h3>Medicine wall</h3><p>Your prescription reads: <b>Panadol Extra, Augmentin 625mg, Cough Syrup.</b> Point them out for the pharmacist.</p>'+
-    '<div class="grid" id="grid"></div><div class="note" id="note"></div>');
-  const grid=document.getElementById('grid'),note=document.getElementById('note');
-  all.forEach(m=>{
-    const d=document.createElement('div');d.className='med';
-    d.innerHTML='<div class="box" style="background:'+m.c+'"></div>'+m.name;
-    d.onclick=()=>{
-      if(d.classList.contains('got'))return;
-      if(RX.some(r=>r.id===m.id)){
-        d.classList.add('got');picked.push(m.id);basket.push(m.name);refreshBag();
-        beep(880,.14);note.textContent='';
-        if(picked.length===3)setTimeout(startCounselling,420);
-      }else{
-        d.classList.add('bad');setTimeout(()=>d.classList.remove('bad'),320);
-        note.textContent='Bilal: that one is not on your prescription.';beep(170,.2,'square');
-      }
-    };
-    grid.appendChild(d);
-  });
+/* ================= customer journey ================= */
+const TASKS=[
+  ['enter','Enter Pharmacy'],['med','Request Medicine'],['toC2','Proceed to Counter 2'],
+  ['card','Select Card Payment'],['cardOk','Complete Card Payment'],['slip','Receive Card Slip'],
+  ['bill1','Receive Medicine Bill'],['ask','Request Consumer Items'],['find','Find Consumer Section'],
+  ['pick','Select Consumer Items'],['back','Return to Counter 2'],['cash','Select Cash Payment'],
+  ['bill2','Receive Consumer Bill'],['exit','Exit Pharmacy']
+];
+const doneT={};
+function tick(k){
+  if(doneT[k])return;doneT[k]=true;beep(820,0.12);
+  const el=document.getElementById('t_'+k);if(el)el.className='done';
 }
+function buildHUD(){
+  document.getElementById('bagList').innerHTML=TASKS.map(function(t){
+    return '<li id="t_'+t[0]+'">'+t[1]+'</li>';}).join('');
+}
+const MED={name:'Vitamin C 500mg (20 tablets)',price:420};
+const CONSUM=[{id:'tooth',name:'Toothpaste',price:260},{id:'sham',name:'Shampoo',price:540},
+              {id:'soap',name:'Soap (pack of 3)',price:330}];
+let carried=[],cardSlipNo='',camDist=6.1;
+function money2(n){return 'Rs '+n.toLocaleString('en-PK');}
+function zoomCounter(on){camDist=on?4.0:6.1;}
 
-/* ---------- counselling ---------- */
-let read=[],qi=0,score=0;
-function startCounselling(){
-  stage='counsel';setObj('Counselling session with the pharmacist');read=[];qi=0;score=0;
-  closeModal();
-  say([['Bilal, Pharmacist','Before you pay, let me take two minutes to explain how these are taken.'],
-       ['Bilal, Pharmacist','Ask me about each one — I would rather you leave sure than sorry.']],counselMenu);
+/* --- counter 1: medicine --- */
+function reqMedicine(){
+  zoomCounter(true);
+  say([['You','Assalam-o-Alaikum. I need some medicine.'],
+       ['Bilal, Counter 1','Wa alaikum assalam. What can I get you?'],
+       ['You','A pack of Vitamin C tablets, please.'],
+       ['Bilal, Counter 1','Certainly. Let me arrange that for you.'],
+       ['Bilal, Counter 1','Here you are — please proceed to Counter 2 for payment.']],
+    function(){
+      carried.push(MED);tick('med');zoomCounter(false);
+      stage='toC2';setObj('Proceed to Counter 2 for payment');
+    });
 }
-function counselMenu(){
-  const rows=Object.keys(COUNSEL).map(k=>
-    '<button class="opt '+(read.includes(k)?'done':'')+'" data-k="'+k+'">'+
-    (read.includes(k)?'✓ ':'')+'How do I take the '+COUNSEL[k].t+'?</button>').join('');
-  openModal('counter','Counselling · Servaid Pharmacy',
-    '<h3>Counselling session</h3><p>Three medicines, three questions. Ask about each one.</p>'+rows+
-    (read.length===3?'<button class="act" id="toQuiz">I have it — check my understanding</button>':''));
-  cardEl.querySelectorAll('.opt').forEach(b=>b.onclick=()=>counselTopic(b.dataset.k));
-  const q=document.getElementById('toQuiz');if(q)q.onclick=()=>{qi=0;score=0;askQuiz();};
+/* --- counter 2: card payment --- */
+function payCard(){
+  zoomCounter(true);tick('toC2');
+  say([['Hamza, Counter 2','Vitamin C 500mg — '+money2(MED.price)+'. How would you like to pay?']],pickMethod1);
 }
-function counselTopic(k){
-  if(!read.includes(k))read.push(k);
-  const c=COUNSEL[k];
-  openModal('counter','Counselling · '+c.t,
-    '<h3>'+c.t+'</h3>'+c.pts.map(p=>'<div class="say"><b>Bilal, Pharmacist</b>'+p+'</div>').join('')+
-    '<button class="act ghost" id="back">Back to my questions</button>');
-  document.getElementById('back').onclick=counselMenu;
-  beep(560,.1);
+function pickMethod1(){
+  openModal('counter','Counter 2 · payment',
+    '<h3>'+money2(MED.price)+' due</h3><p>Hamza waits for your choice.</p>'+
+    '<div class="two"><button class="act ghost" id="c1cash">Cash</button>'+
+    '<button class="act" id="c1card">Card</button></div>'+
+    '<div class="note" id="m1note"></div>');
+  document.getElementById('c1cash').onclick=function(){
+    document.getElementById('m1note').textContent='Card only for this purchase — try the card.';};
+  document.getElementById('c1card').onclick=function(){tick('card');closeModal();cardMachine();};
 }
-function askQuiz(){
-  if(qi>=QUIZ.length)return quizDone();
-  const q=QUIZ[qi];
-  openModal('counter','Counselling check · question '+(qi+1)+' of 3',
-    '<h3>'+q.q+'</h3>'+q.a.map((a,i)=>'<button class="opt" data-i="'+i+'">'+a+'</button>').join('')+
-    '<div class="note" id="fb"></div>');
-  cardEl.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
-    const i=+b.dataset.i,right=i===q.ok;
-    cardEl.querySelectorAll('.opt').forEach(x=>x.onclick=null);
-    b.classList.add(right?'right':'wrong');
-    if(!right)cardEl.querySelector('[data-i="'+q.ok+'"]').classList.add('right');
-    if(right)score++;
-    beep(right?880:180,.18,right?'sine':'square');
-    const fb=document.getElementById('fb');
-    fb.style.color=right?'#2f9e6e':'#E03131';fb.textContent=right?q.fb:q.bad;
-    setTimeout(()=>{qi++;askQuiz();},right?1200:2100);
-  });
-}
-function quizDone(){
-  closeModal();
-  const line=score===3?'Perfect — you have got all three right. That is exactly how I like a patient to leave.'
-    :score===2?'Close enough. Remember the one you slipped on and you will be fine.'
-    :'Let me repeat the key one: finish the course, measure with the cup, and never double up on paracetamol.';
-  say([['Bilal, Pharmacist',line],
-       ['Bilal, Pharmacist','Everything is bagged. Please step to the till for payment.']],
-    ()=>{stage='payMeds';setObj('Pay for the medicines at the till');});
-}
-
-/* ---------- payment ---------- */
-function choosePayment(items,label,cb){
-  const total=items.reduce((s,i)=>s+i.price,0);
-  openModal('counter','Payment · '+label,
-    '<h3>'+money(total)+' due</h3><p>How would you like to pay?</p>'+
-    '<div class="two"><button class="act" id="cash">Pay cash</button>'+
-    '<button class="act ghost" id="cardp">Pay by card</button></div>');
-  document.getElementById('cash').onclick=()=>cashFlow(items,total,label,cb);
-  document.getElementById('cardp').onclick=()=>cardFlow(items,total,label,cb);
-}
-function cashFlow(items,total,label,cb){
-  payMode='Cash';
-  const notes=[Math.ceil(total/500)*500,Math.ceil(total/1000)*1000+1000,5000]
-    .filter((v,i,a)=>a.indexOf(v)===i&&v>=total);
-  openModal('counter','Cash counter',
-    '<h3>Hand over cash</h3><p>Bill is '+money(total)+'. Which notes are you giving?</p>'+
-    notes.map(n=>'<button class="opt" data-n="'+n+'">'+money(n)+'</button>').join(''));
-  cardEl.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
-    const given=+b.dataset.n,change=given-total;beep(700,.15);
-    closeModal();
-    say([['Hamza, Cashier',change?'Out of '+money(given)+' — here is '+money(change)+' back.':'Exact cash, perfect.'],
-         ['Hamza, Cashier','Your receipt is in the bag.']],()=>showReceipt(items,total,label,cb));
-  });
-}
-function cardFlow(items,total,label,cb){
-  payMode='Card';
-  card4=String(Math.floor(1000+Math.random()*9000));
+function cardMachine(){
   let pin='';
-  const draw=(msg,showKeys,amt)=>{
-    openModal(null,null,
-      '<h3>Card payment</h3><p>Hamza turns the machine towards you.</p>'+
+  cardSlipNo=String(Math.floor(100000+Math.random()*899999));
+  function screen(msg,keys,amt){
+    openModal(null,null,'<h3>Card payment</h3><p>Hamza places the card machine on the counter.</p>'+
       '<div class="pos"><div class="brand">SERVAID PHARMACY · POS</div>'+
-      '<div class="pos-screen"><div class="pos-amt">'+(amt===false?'':money(total)+'.00')+'</div>'+
-      '<div class="pos-msg">'+msg+'</div>'+(showKeys?'<div class="pins" id="pins"></div>':'')+'</div>'+
-      (showKeys?'<div class="keys" id="keys">'+
-        [1,2,3,4,5,6,7,8,9].map(n=>'<div data-k="'+n+'">'+n+'</div>').join('')+
+      '<div class="pos-screen"><div class="pos-amt">'+(amt===false?'':money2(MED.price)+'.00')+'</div>'+
+      '<div class="pos-msg">'+msg+'</div>'+(keys?'<div class="pins" id="pins"></div>':'')+'</div>'+
+      (keys?'<div class="keys" id="keys">'+[1,2,3,4,5,6,7,8,9].map(function(n){return '<div data-k="'+n+'">'+n+'</div>';}).join('')+
         '<div class="del" data-k="del">⌫</div><div data-k="0">0</div><div class="ok" data-k="ok">✓</div></div>':'')+
-      '</div>'+(showKeys?'':'<button class="act" id="posNext">Tap the card</button>'));
-  };
-  draw('INSERT OR TAP CARD',false);
-  document.getElementById('posNext').onclick=()=>{
-    beep(1000,.08);pin='';draw('ENTER 4-DIGIT PIN',true);
+      '</div>'+(keys?'<p class="fine" style="text-align:center">Demo PIN: 1234</p>':'<button class="act" id="tapc">Tap your card</button>'));
+  }
+  screen('PLEASE TAP YOUR CARD',false);
+  document.getElementById('tapc').onclick=function(){
+    beep(1050,0.09);screen('ENTER 4-DIGIT PIN',true);
     const pins=document.getElementById('pins');
-    document.getElementById('keys').onclick=e=>{
-      const k=e.target.dataset.k;if(!k)return;beep(1200,.05,'square');
+    document.getElementById('keys').onclick=function(e){
+      const k=e.target.dataset.k;if(!k)return;beep(1200,0.05,'square');
       if(k==='del')pin=pin.slice(0,-1);
       else if(k==='ok'){
-        if(pin.length<4){pins.textContent='••••'.slice(0,pin.length);return;}
-        draw('PROCESSING…',false,false);
-        document.getElementById('posNext').style.display='none';
-        setTimeout(()=>{
-          beep(660,.12);setTimeout(()=>beep(990,.18),140);
-          const auth=String(Math.floor(100000+Math.random()*899999));
-          openModal(null,null,
-            '<h3>Approved</h3>'+
-            '<div class="slip"><div class="c"><b>SERVAID PHARMACY</b><br>'+label+'<br>'+
-            'TID 44128890 · MID 000731</div><br>'+
-            'CARD &nbsp;**** **** **** '+card4+'<br>'+
-            'ENTRY &nbsp;CHIP · PIN VERIFIED<br>'+
-            'AMOUNT '+money(total)+'.00<br>'+
-            'AUTH &nbsp;&nbsp;'+auth+'<br><br>'+
-            '<div class="c">— APPROVED —<br>MERCHANT COPY</div></div>'+
-            '<button class="act" id="slipOk">Take the slip</button>');
-          document.getElementById('slipOk').onclick=()=>{
-            closeModal();
-            say([['Hamza, Cashier','Approved. This slip is from the machine, and the printed bill goes with it.']],
-              ()=>showReceipt(items,total,label,cb));
-          };
+        if(pin.length<4)return;
+        screen('PROCESSING…',false,false);
+        const b=document.getElementById('tapc');if(b)b.style.display='none';
+        setTimeout(function(){
+          beep(680,0.12);setTimeout(function(){beep(1000,0.18);},150);
+          tick('cardOk');cardSlip();
         },1500);
         return;
-      }
-      else if(pin.length<4)pin+=k;
+      }else if(pin.length<4)pin+=k;
       pins.textContent='•'.repeat(pin.length);
     };
   };
 }
-function showReceipt(items,total,label,cb){
-  openModal('wide','Checkout',
-    '<h3>Your bill</h3>'+
-    '<div class="slip"><div class="c"><b>SERVAID ✚ PHARMACY</b><br>'+label+'<br>Lahore</div><br>'+
-    items.map(i=>'<div class="row"><span>'+i.name+'</span><span>'+money(i.price)+'</span></div>').join('')+
-    '<div class="row total"><span>Total</span><span>'+money(total)+'</span></div>'+
-    '<div class="row"><span>Paid by</span><span>'+payMode+'</span></div></div>'+
-    '<button class="act" id="done">Take the bag</button>');
-  document.getElementById('done').onclick=()=>{closeModal();cb(total);};
+function cardSlip(){
+  openModal(null,null,'<h3>Payment approved</h3>'+
+    '<div class="slip"><div class="c"><b>CARD PAYMENT RECEIPT</b><br>SERVAID PHARMACY<br>TID 44128890 · MID 000731</div><br>'+
+    'CARD &nbsp;**** **** **** 4417<br>ENTRY CHIP · PIN VERIFIED<br>AMOUNT '+money2(MED.price)+'.00<br>'+
+    'AUTH &nbsp;'+cardSlipNo+'<br><br><div class="c">— APPROVED —<br>CUSTOMER COPY</div></div>'+
+    '<button class="act" id="takeSlip">Take the slip</button>');
+  document.getElementById('takeSlip').onclick=function(){
+    tick('slip');closeModal();
+    say([['Hamza, Counter 2','Here is your slip. The bill is printing now.']],medBill);
+  };
+}
+function medBill(){
+  openModal('wide','Medicine bill',
+    '<h3>Medicine purchase</h3>'+
+    '<div class="slip"><div class="c"><b>SERVAID ✚ PHARMACY</b><br>Counter 2<br>042 111 62 63 64</div><br>'+
+    '<div class="row"><span>'+MED.name+'</span><span>'+money2(MED.price)+'</span></div>'+
+    '<div class="row total"><span>Total</span><span>'+money2(MED.price)+'</span></div>'+
+    '<div class="row"><span>Paid by</span><span>Card</span></div></div>'+
+    '<button class="act" id="takeBill">Take the bill</button>');
+  document.getElementById('takeBill').onclick=function(){
+    tick('bill1');closeModal();zoomCounter(false);
+    say([['You','Medicine purchase completed.'],
+         ['You','Oh! I also need some consumer items.']],
+      function(){stage='backC1';setObj('Go back to Counter 1');});
+  };
+}
+/* --- back to counter 1 --- */
+function askConsumer(){
+  zoomCounter(true);
+  say([['You','I also need a few consumer items.'],
+       ['Bilal, Counter 1','Sure. You will find those in our consumer section, on the left aisle.'],
+       ['Bilal, Counter 1','Pick what you need and bring them to Counter 2 for payment.']],
+    function(){tick('ask');zoomCounter(false);stage='find';setObj('Find the consumer section');});
+}
+/* --- consumer shelves --- */
+function pickConsumer(){
+  tick('find');
+  openModal('aisle','Consumer section',
+    '<h3>Consumer shelves</h3><p>Pick the items you need.</p>'+
+    CONSUM.map(function(c){return '<button class="opt" data-i="'+c.id+'">'+c.name+
+      '<b style="float:right">'+money2(c.price)+'</b></button>';}).join('')+
+    '<div class="note" id="pnote">Nothing picked yet</div>'+
+    '<button class="act" id="pdone" style="display:none">Take these to Counter 2</button>');
+  const note=document.getElementById('pnote'),dn=document.getElementById('pdone');
+  cardEl.querySelectorAll('.opt').forEach(function(b){
+    b.onclick=function(){
+      if(b.classList.contains('right'))return;
+      b.classList.add('right');beep(880,0.12);
+      const it=CONSUM.filter(function(c){return c.id===b.dataset.i;})[0];
+      carried.push(it);
+      const picked=carried.filter(function(c){return c.id;});
+      note.style.color='#2f9e6e';
+      note.textContent=picked.map(function(c){return c.name+' ✓';}).join('   ');
+      dn.style.display='block';
+    };
+  });
+  dn.onclick=function(){
+    tick('pick');closeModal();
+    stage='backC2';setObj('Return to Counter 2 for payment');
+  };
+}
+/* --- counter 2: scan + cash --- */
+function scanAndPay(){
+  zoomCounter(true);tick('back');
+  const items=carried.filter(function(c){return c.id;});
+  let i=0,lines='';
+  openModal('counter','Counter 2 · scanning',
+    '<h3>Scanning your items</h3><div class="slip" id="scanBox">Ready…</div>');
+  const box=document.getElementById('scanBox');
+  const step=function(){
+    if(i<items.length){
+      lines+='<div class="row"><span>'+items[i].name+'</span><span>'+money2(items[i].price)+'</span></div>';
+      box.innerHTML=lines+'<div class="c" style="color:#2f9e6e">PRODUCT ADDED</div>';
+      beep(1400,0.05,'square');i++;setTimeout(step,700);
+    }else{
+      const total=items.reduce(function(s,c){return s+c.price;},0);
+      box.innerHTML=lines+'<div class="row total"><span>Total</span><span>'+money2(total)+'</span></div>';
+      setTimeout(function(){closeModal();
+        say([['Hamza, Counter 2','That comes to '+money2(total)+'. How would you like to pay?']],
+          function(){pickMethod2(total);});},900);
+    }
+  };
+  setTimeout(step,600);
+}
+function pickMethod2(total){
+  openModal('counter','Counter 2 · payment',
+    '<h3>'+money2(total)+' due</h3><p>Consumer items.</p>'+
+    '<div class="two"><button class="act" id="c2cash">Cash</button>'+
+    '<button class="act ghost" id="c2card">Card</button></div>'+
+    '<div class="note" id="m2note"></div>');
+  document.getElementById('c2card').onclick=function(){
+    document.getElementById('m2note').textContent='Cash for this one — you have notes in your pocket.';};
+  document.getElementById('c2cash').onclick=function(){tick('cash');cashPay(total);};
+}
+function cashPay(total){
+  const notes=[Math.ceil(total/500)*500,Math.ceil(total/1000)*1000+1000,5000]
+    .filter(function(v,i,a){return a.indexOf(v)===i&&v>=total;});
+  openModal('counter','Cash payment',
+    '<h3>Hand over cash</h3><p>Total is '+money2(total)+'.</p>'+
+    notes.map(function(n){return '<button class="opt" data-n="'+n+'">'+money2(n)+'</button>';}).join(''));
+  cardEl.querySelectorAll('.opt').forEach(function(b){
+    b.onclick=function(){
+      const given=+b.dataset.n,change=given-total;beep(720,0.14);closeModal();
+      say([['Hamza, Counter 2',change?'Out of '+money2(given)+' — '+money2(change)+' back to you.':'Exact cash, thank you.'],
+           ['Hamza, Counter 2','Cash payment successful. Printing your bill.']],
+        function(){consumerBill(total);});
+    };
+  });
+}
+function consumerBill(total){
+  const items=carried.filter(function(c){return c.id;});
+  openModal('wide','Consumer bill',
+    '<h3>Consumer items</h3>'+
+    '<div class="slip"><div class="c"><b>SERVAID ✚ PHARMACY</b><br>Counter 2<br>042 111 62 63 64</div><br>'+
+    items.map(function(c){return '<div class="row"><span>'+c.name+'</span><span>'+money2(c.price)+'</span></div>';}).join('')+
+    '<div class="row total"><span>Total</span><span>'+money2(total)+'</span></div>'+
+    '<div class="row"><span>Paid by</span><span>Cash</span></div></div>'+
+    '<button class="act" id="takeBill2">Take the bill</button>');
+  document.getElementById('takeBill2').onclick=function(){
+    tick('bill2');closeModal();zoomCounter(false);
+    say([['Hamza, Counter 2','Thank you for choosing Servaid.'],
+         ['You','Shukriya. See you next time.']],
+      function(){stage='leave';setObj('Walk back to the entrance to leave');});
+  };
+}
+/* --- ending --- */
+function finish(){
+  if(stage==='done')return;
+  stage='done';tick('exit');setObj('Visit complete');
+  const end=document.getElementById('endCard');
+  end.classList.add('on');
+}
+function interact(){
+  const z=activeZone();if(!z)return;
+  if(z==='c1'&&stage==='toC1'){stage='busy';reqMedicine();}
+  else if(z==='c2'&&stage==='toC2'){stage='busy';payCard();}
+  else if(z==='c1'&&stage==='backC1'){stage='busy';askConsumer();}
+  else if(z==='shelf'&&stage==='find'){stage='busy';pickConsumer();}
+  else if(z==='c2'&&stage==='backC2'){stage='busy';scanAndPay();}
+  else if(z==='exit'&&stage==='leave'){finish();}
 }
 
 /* ================= shoppers ================= */
@@ -1077,7 +1215,7 @@ function stepTo(n,tx,tz,mult){
   n.x+=dx/d*sp*1.6; n.z+=dz/d*sp*1.6;
   n.walking=true; n.phase+=0.15;
   n.back=dz>Math.abs(dx)*0.4;
-  n.dir=dx<0?-1:1;
+  n.dir=dx<0?1:-1;
   return false;
 }
 const WALK_MINX=-0.88, WALK_MAXX=0.92;
@@ -1114,7 +1252,7 @@ function updateNPCs(){
     }
     if(n.state==='walk'){
       if(stepTo(n,n.tx,n.tz,1)){n.state='browse';n.timer=200+Math.random()*300;
-        n.reach=Math.random()<0.55;n.back=false;n.dir=n.tx>0?1:-1;}
+        n.reach=Math.random()<0.55;n.back=false;n.dir=n.tx>0?-1:1;}
     }else{
       n.walking=false;
       if(--n.timer<=0){const s=SPOTS[Math.floor(Math.random()*SPOTS.length)];
@@ -1132,8 +1270,8 @@ function updateNPCs(){
 }
 /* ================= assembling the frame ================= */
 const STAFF=[
-  {x:-1.62,z:15.0,role:'pharmacist'},
-  {x:-1.62,z:10.0,role:'cashier'}
+  {x:-1.62,z:15.2,role:'pharmacist'},
+  {x:-1.62,z:9.4,role:'cashier'}
 ];
 function personDraw(n,h){
   if(n.z<cam.z+4.6||n.z>cam.z+13)return;
@@ -1151,6 +1289,7 @@ function draw(){
   medicineWall();
   const items=[];
   RACKS.forEach(function(rk,i){items.push({z:(rk.z0+rk.z1)/2,f:function(){rackUnit(rk,i);}});});
+  for(let cz=5.2;cz<ZB-2;cz+=4.3){(function(z){items.push({z:z+0.21,f:function(){column(z);}});})(cz);}
   for(let z=CTR_Z0;z<CTR_Z1;z+=4.25){
     (function(z0){items.push({z:z0+2.1,f:function(){counterChunk(z0,Math.min(z0+4.25,CTR_Z1));}});})(z);
   }
@@ -1158,7 +1297,7 @@ function draw(){
     items.push({z:st.z+0.9,f:function(){
       const ph=st.role==='pharmacist';
       const p=proj(st.x,0,st.z);
-      drawHuman(p.x,p.y,1.30*p.s,{dir:1,phase:t*0.011,walking:false,back:false,
+      drawHuman(p.x,p.y,1.30*p.s,{dir:-1,phase:t*0.011,walking:false,back:false,
         outfit:ph?'coat':'polo',top:'#1F4FD0',bottom:'#2b3550',hair:'#241b13',style:'short',
         beard:ph,skin:ph?'#d69b6c':'#e8bb8e',staff:true,wave:ph&&stage==='greet'});
     }});
@@ -1184,92 +1323,39 @@ function marker(){
   ctx.fillStyle='rgba(224,49,49,.95)';
   ctx.beginPath();ctx.roundRect(p.x-r*0.62,p.y-r,r*1.24,r*1.5,r*0.3);ctx.fill();
   ctx.fillStyle='#fff';ctx.font='bold '+(r*1.15)+'px Trebuchet MS';ctx.textAlign='center';
-  ctx.fillText('!',p.x,p.y+r*0.34);ctx.textAlign='left';
+  ctx.fillText('!',p.x,p.y+r*0.34);
+  const z=activeZone();
+  const lbl=z==='shelf'?'Press E to pick up':(z==='exit'?'Press E to leave':'Press E to interact');
+  ctx.font='bold '+Math.max(10,r*0.42)+'px Trebuchet MS';
+  ctx.fillStyle='rgba(9,16,44,.82)';
+  const tw=ctx.measureText(lbl).width+14;
+  ctx.beginPath();ctx.roundRect(p.x-tw/2,p.y+r*0.75,tw,r*0.72,4);ctx.fill();
+  ctx.fillStyle='#fff';ctx.fillText(lbl,p.x,p.y+r*1.26);
+  ctx.textAlign='left';
 }
 /* ================= zones ================= */
 const ZONES={
-  counter:{x:-0.15,z:15.0,rx:0.95,rz:1.7,left:true},
-  till:{x:-0.15,z:10.0,rx:0.95,rz:1.6,left:true},
-  pampers:{x:0.3,z:11.0,rx:1.1,rz:1.9,left:false},
-  tissues:{x:0.3,z:15.5,rx:1.1,rz:1.9,left:false}
+  c1:{z:15.2,rz:1.7,side:-1},
+  c2:{z:9.4,rz:1.6,side:-1},
+  shelf:{z:12.2,rz:2.0,side:1},
+  exit:{z:3.6,rz:1.3,side:0}
 };
 function inZone(k){
   const zn=ZONES[k];
   if(Math.abs(player.z-zn.z)>zn.rz)return false;
-  return zn.left?player.x<0.35:player.x>-0.25;
+  if(zn.side<0)return player.x<0.35;
+  if(zn.side>0)return player.x>-0.3;
+  return true;
 }
 function activeZone(){
-  if(stage==='toCounter'&&inZone('counter'))return 'counter';
-  if(stage==='payMeds'&&inZone('till'))return 'till';
-  if(stage==='returnAsk'&&inZone('counter'))return 'counter';
-  if(stage==='collect'){
-    if(inZone('pampers')&&collected.indexOf('pampers')<0)return 'pampers';
-    if(inZone('tissues')&&collected.indexOf('tissue')<0)return 'tissues';
-  }
-  if(stage==='backToCounter'&&inZone('counter'))return 'counter';
-  if(stage==='payFinal'&&inZone('till'))return 'till';
+  if(stage==='toC1'&&inZone('c1'))return 'c1';
+  if(stage==='toC2'&&inZone('c2'))return 'c2';
+  if(stage==='backC1'&&inZone('c1'))return 'c1';
+  if(stage==='find'&&inZone('shelf'))return 'shelf';
+  if(stage==='backC2'&&inZone('c2'))return 'c2';
+  if(stage==='leave'&&inZone('exit'))return 'exit';
   return null;
 }
-function interact(){
-  const z=activeZone();if(!z)return;
-  if(z==='counter'&&stage==='toCounter'){
-    stage='greet';
-    say([['You','Assalam-o-Alaikum. I have a prescription to fill.'],
-         ['Bilal, Pharmacist','Wa alaikum assalam, welcome to Servaid. Let me see it.'],
-         ['Bilal, Pharmacist','All three are on the wall behind me. Point them out and I will pack them.']],
-      ()=>{stage='pickMeds';setObj('Pick the three prescribed medicines');openPicker();});
-  }
-  else if(z==='till'&&stage==='payMeds'){
-    choosePayment(RX,'Prescription counter',()=>{
-      paid=paid.concat(RX);player.bag=true;
-      say([['You','Shukriya. Oh — one more thing before I go.']],
-        ()=>{stage='returnAsk';setObj('Go back to the counter and ask for the extra items');});
-    });
-  }
-  else if(z==='counter'&&stage==='returnAsk'){
-    say([['You','Do you keep pampers and tissue boxes as well?'],
-         ['Bilal, Pharmacist','Of course. Baby care is the second rack, personal care right after it.'],
-         ['Bilal, Pharmacist','Pick what you need and bring it back here.']],
-      ()=>{stage='collect';setObj('Collect the pampers and a tissue box');});
-  }
-  else if(z==='pampers'){
-    collected.push('pampers');refreshBag();beep(880,.14);
-    say([['You','Large pack, twelve nappies. That will last the week.']],afterCollect);
-  }
-  else if(z==='tissues'){
-    collected.push('tissue');refreshBag();beep(880,.14);
-    say([['You','And one tissue box for the car.']],afterCollect);
-  }
-  else if(z==='counter'&&stage==='backToCounter'){
-    say([['You','Just these two, please.'],
-         ['Bilal, Pharmacist','Done. Thank you for choosing Servaid Pharmacy — we will see you again soon.'],
-         ['Bilal, Pharmacist','The till is ready whenever you are.']],
-      ()=>{stage='payFinal';setObj('Pay for the pampers and tissues');});
-  }
-  else if(z==='till'&&stage==='payFinal'){
-    choosePayment(BABY,'Front till',()=>{paid=paid.concat(BABY);finish();});
-  }
-}
-function afterCollect(){
-  if(collected.length===2){stage='backToCounter';setObj('Take them back to the counter');}
-  else setObj('One more item to collect');
-}
-function finish(){
-  stage='done';setObj('Visit complete');
-  const total=paid.reduce((s,i)=>s+i.price,0);
-  openModal('wide','Thank you for choosing Servaid',
-    '<h3>Visit complete</h3>'+
-    '<div class="slip"><div class="c"><b>SERVAID ✚ PHARMACY</b><br>Full visit summary</div><br>'+
-    paid.map(i=>'<div class="row"><span>'+i.name+'</span><span>'+money(i.price)+'</span></div>').join('')+
-    '<div class="row total"><span>Total spent</span><span>'+money(total)+'</span></div>'+
-    '<div class="row"><span>Counselling score</span><span>'+score+' / 3</span></div></div>'+
-    '<button class="act" id="again">Shop again</button>'+
-    '<div class="shareRow"><button class="act wa" id="shareEnd">Share on WhatsApp</button>'+
-    '<button class="act ghost cp" id="copyEnd">Copy link</button></div>');
-  document.getElementById('again').onclick=()=>location.reload();
-}
-
-
 /* ---------- sharing ---------- */
 const SHARE_URL='https://servaidpharmacy-ai.github.io/Servaid-Game/';
 const SHARE_TXT='Take a walk through Servaid Pharmacy — fill a prescription, get counselled by the pharmacist, pay by cash or card. Play it here:';
@@ -1286,6 +1372,7 @@ function copyLink(btn){
     setTimeout(function(){btn.textContent='Copy link';},2200);}catch(e){}
 }
 document.getElementById('shareBtn').onclick=shareIt;
+document.getElementById('endAgain').onclick=function(){location.reload();};
 const FRANCHISE_WA='https://wa.me/923164924624?text=Assalam-o-Alaikum.%20I%20would%20like%20details%20about%20the%20Servaid%20Pharmacy%20franchise%20%E2%80%94%20investment%2C%20requirements%20and%20available%20locations.';
 function contactServaid(){window.open(FRANCHISE_WA,'_blank','noopener');}
 document.getElementById('contactBtn').onclick=contactServaid;
@@ -1294,7 +1381,7 @@ document.getElementById('contactBtn').onclick=contactServaid;
 function unproject(sx,sy){
   const s=(sy-HZ)/CAMY;
   if(s<12)return null;
-  return {x:cam.x+(sx-W/2)/s, z:cam.z+F/s, s:s};
+  return {x:cam.x-(sx-W/2)/s, z:cam.z+F/s, s:s};
 }
 function setTarget(x,z){
   player.tx=Math.max(WALK_MINX,Math.min(WALK_MAXX,x));
@@ -1338,12 +1425,13 @@ function endIntro(){
   if(stage!=='intro')return;
   document.getElementById('cine').classList.remove('on');
   document.getElementById('cardline').classList.remove('on');
-  player.z=3.4;player.x=0.05;player.tz=null;
+  player.z=3.9;player.x=0.05;player.tz=null;
   cam.z=player.z-6.1;cam.x=player.x*0.42;
-  stage='toCounter';setObj('Walk down the aisle to the pharmacy counter');
+  stage='toC1';tick('enter');setObj('Walk to Counter 1 and ask for your medicine');
   document.getElementById('hint').classList.add('on');
   setTimeout(function(){document.getElementById('hint').classList.remove('on');},5200);
-  say([['You','Prescription first, then whatever else we are out of at home.']]);
+  say([['','Welcome to Servaid Pharmacy'],
+       ['You','Let me get what I came for.']]);
 }
 function runIntro(){
   introT++;
@@ -1358,7 +1446,7 @@ function runIntro(){
 /* ---------- input ---------- */
 document.addEventListener('keydown',function(e){
   keys[e.key]=true;
-  if(e.key===' '||e.key==='Enter'){e.preventDefault();
+  if(e.key===' '||e.key==='Enter'||e.key==='e'||e.key==='E'){e.preventDefault();
     if(dlg.classList.contains('on'))nextLine();else if(!modal.classList.contains('on'))interact();}
 });
 document.addEventListener('keyup',function(e){keys[e.key]=false;});
@@ -1393,8 +1481,8 @@ function loop(){
   const busy=dlg.classList.contains('on')||modal.classList.contains('on')||stage==='title';
   let vx=0,vz=0;
   if(!busy){
-    if(keys.ArrowLeft||keys.a||keys.A)vx=-0.05;
-    if(keys.ArrowRight||keys.d||keys.D)vx=0.05;
+    if(keys.ArrowLeft||keys.a||keys.A)vx=0.05;
+    if(keys.ArrowRight||keys.d||keys.D)vx=-0.05;
     if(keys.ArrowUp||keys.w||keys.W)vz=0.06;
     if(keys.ArrowDown||keys.s||keys.S)vz=-0.06;
   }
@@ -1404,7 +1492,7 @@ function loop(){
     player.z=Math.max(2.4,Math.min(19.4,player.z+vz));
     player.phase+=0.17;player.moving=true;
     if(Math.abs(vz)>=Math.abs(vx))player.back=vz>0;
-    if(vx)player.dir=vx>0?1:-1;
+    if(vx)player.dir=vx>0?-1:1;
   }else if(!busy&&player.tz!=null){
     const dx=player.tx-player.x, dz=player.tz-player.z, d=Math.hypot(dx,dz);
     if(d<0.13){
@@ -1416,16 +1504,16 @@ function loop(){
       player.z+=dz/d*sp;
       player.phase+=0.17;player.moving=true;
       if(Math.abs(dz)>Math.abs(dx)*0.55)player.back=dz>0;
-      if(Math.abs(dx)>0.02)player.dir=dx>0?1:-1;
+      if(Math.abs(dx)>0.02)player.dir=dx>0?-1:1;
     }
   }else player.moving=false;
   updateNPCs();
-  cam.z+=((player.z-6.1)-cam.z)*0.1;
+  cam.z+=((player.z-camDist)-cam.z)*0.08;
   cam.x+=(player.x*0.42-cam.x)*0.1;
   actBtn.classList.toggle('live',!!activeZone()||dlg.classList.contains('on'));
   draw();requestAnimationFrame(loop);
 }
-refreshBag();loop();
+buildHUD();loop();
 
 })();
 </script>

@@ -54,11 +54,17 @@
   #hint{position:absolute;left:50%;transform:translateX(-50%);bottom:14%;background:rgba(9,16,44,.86);
     color:#fff;font-size:13px;padding:8px 16px;border-radius:20px;opacity:0;transition:opacity .6s;pointer-events:none;}
   #hint.on{opacity:1;}
-  #shareBtn{position:absolute;left:12px;bottom:12px;z-index:6;display:flex;align-items:center;gap:6px;
-    background:#25D366;color:#fff;border:0;border-radius:20px;padding:8px 14px;font-family:inherit;
-    font-size:13px;font-weight:bold;cursor:pointer;box-shadow:0 3px 0 #128C4A;}
-  #shareBtn:active{transform:translateY(2px);box-shadow:0 1px 0 #128C4A;}
-  @media(max-width:700px){#shareBtn{padding:7px 11px;font-size:12px;left:10px;bottom:auto;top:56px;}}
+  #btnRow{position:absolute;left:12px;bottom:12px;z-index:6;display:flex;gap:8px;flex-wrap:wrap;}
+  #btnRow button{display:flex;align-items:center;gap:6px;border:0;border-radius:20px;padding:8px 14px;
+    font-family:inherit;font-size:13px;font-weight:bold;color:#fff;cursor:pointer;}
+  #shareBtn{background:#25D366;box-shadow:0 3px 0 #128C4A;}
+  #contactBtn{background:var(--violet);box-shadow:0 3px 0 var(--violet-dark);}
+  #btnRow button:active{transform:translateY(2px);}
+  #shareBtn:active{box-shadow:0 1px 0 #128C4A;} #contactBtn:active{box-shadow:0 1px 0 var(--violet-dark);}
+  @media(max-width:700px){
+    #btnRow{left:10px;bottom:auto;top:52px;flex-direction:column;}
+    #btnRow button{padding:7px 11px;font-size:11.5px;}
+  }
   .shareRow{display:flex;gap:8px;margin-top:10px;}
   .shareRow .wa{flex:1;background:#25D366;color:#fff;box-shadow:0 3px 0 #128C4A;}
   .shareRow .cp{flex:1;}
@@ -215,7 +221,10 @@
   <div id="cine"><i class="bar top"></i><i class="bar bot"></i><span class="skip">tap to skip</span></div>
   <div id="cardline"><b>SERVAID <i>✚</i> FRANCHISE</b><span>Franchise walkthrough</span></div>
   <div id="hint">Tap anywhere on the floor to walk there</div>
-  <button id="shareBtn" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 7 9.6a5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.2-.1-.4-.2Z"/></svg><span>Share</span></button>
+  <div id="btnRow">
+    <button id="shareBtn" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 7 9.6a5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.2-.1-.4-.2Z"/></svg><span>Share</span></button>
+    <button id="contactBtn" title="Franchise enquiries on WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 7 9.6a5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.2-.1-.4-.2Z"/></svg><span>Contact Servaid</span></button>
+  </div>
   <div id="dialog"><div id="speaker"></div><div id="line"></div><div id="next">tap to continue ▸</div></div>
   <div id="modal"><div class="card" id="card"></div></div>
 
@@ -1160,6 +1169,9 @@ function copyLink(btn){
     setTimeout(function(){btn.textContent='Copy link';},2200);}catch(e){}
 }
 document.getElementById('shareBtn').onclick=shareIt;
+const FRANCHISE_WA='https://wa.me/923164924624?text=Assalam-o-Alaikum.%20I%20would%20like%20details%20about%20the%20Servaid%20Pharmacy%20franchise%20%E2%80%94%20investment%2C%20requirements%20and%20available%20locations.';
+function contactServaid(){window.open(FRANCHISE_WA,'_blank','noopener');}
+document.getElementById('contactBtn').onclick=contactServaid;
 
 /* ---------- tap to walk ---------- */
 function unproject(sx,sy){

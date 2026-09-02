@@ -1037,7 +1037,7 @@ function updateRep(){
 /* ================= franchise walkthrough ================= */
 const PKG={security:0.5, fee:2.0, reno:2.8, stock:5.5, total:10.80};
 const STATIONS=[
-  {id:'space',  z:5.4,  cost:0,   obj:'Meet Hamza at the entrance'},
+  {id:'space',  z:5.4,  cost:0,   obj:'Meet Ali Minhas at the entrance'},
   {id:'fitout', z:9.0,  cost:2.8, obj:'Walk to the counter — fit-out and equipment'},
   {id:'stock',  z:12.6, cost:5.5, obj:'Walk to the medicine wall — opening stock'},
   {id:'brand',  z:16.0, cost:2.5, obj:'Walk to the Servaid branding — fee and security'},
@@ -1068,7 +1068,7 @@ function card(photo,caption,html){openModal(photo,caption,html);}
 /* --- 1. the shop itself --- */
 function stSpace(){
   card('front','What you need before we start',
-    '<h3>The shop</h3><p>Hamza starts with the site, because everything else depends on it.</p>'+
+    '<h3>The shop</h3><p>Ali starts with the site, because everything else depends on it.</p>'+
     '<div class="spec"><span>Covered area</span><b>1,000 – 1,200 sq ft</b></div>'+
     '<div class="spec"><span>In marlas</span><b>4 – 5 marlas</b></div>'+
     '<div class="spec"><span>Preferred sizes</span><b>30×40, 25×50, 25×45</b></div>'+
@@ -1079,7 +1079,7 @@ function stSpace(){
     '<button class="opt" data-w="25" data-d="45">25 × 45 ft</button>'+
     '<button class="opt" data-w="18" data-d="55">18 × 55 ft (narrow front)</button>'+
     '<div class="note" id="fitNote"></div>'+
-    '<button class="act" id="spaceNext" style="display:none">Carry on with Hamza</button>');
+    '<button class="act" id="spaceNext" style="display:none">Carry on with Ali</button>');
   const note=document.getElementById('fitNote'),nx=document.getElementById('spaceNext');
   cardEl.querySelectorAll('.opt').forEach(function(b){
     b.onclick=function(){
@@ -1096,8 +1096,8 @@ function stSpace(){
     };
   });
   nx.onclick=function(){completeStation(0,[
-    ['Hamza, Franchise Rep','Good. Once the site is right, everything from here is turnkey — we hand you a running pharmacy.'],
-    ['Hamza, Franchise Rep','Come to the counter and I will show you what we build inside it.']]);};
+    ['Ali Minhas, Franchise Rep','Good. Once the site is right, everything from here is turnkey — we hand you a running pharmacy.'],
+    ['Ali Minhas, Franchise Rep','Come to the counter and I will show you what we build inside it.']]);};
 }
 
 /* --- 2. fit-out --- */
@@ -1121,8 +1121,8 @@ function stFitout(){
     };
   });
   nx.onclick=function(){completeStation(PKG.reno,[
-    ['Hamza, Franchise Rep','That is '+fmtM(PKG.reno)+' of the investment — and you never source any of it yourself.'],
-    ['Hamza, Franchise Rep','Now the part most people ask about first. Come to the medicine wall.']]);};
+    ['Ali Minhas, Franchise Rep','That is '+fmtM(PKG.reno)+' of the investment — and you never source any of it yourself.'],
+    ['Ali Minhas, Franchise Rep','Now the part most people ask about first. Come to the medicine wall.']]);};
 }
 
 /* --- 3. opening stock --- */
@@ -1147,8 +1147,8 @@ function stStock(){
     };
   });
   nx.onclick=function(){completeStation(PKG.stock,[
-    ['Hamza, Franchise Rep','Stock is the single largest line — '+fmtM(PKG.stock)+' — and it is the part that starts earning from day one.'],
-    ['Hamza, Franchise Rep','Now let me explain what you are paying Servaid itself. This way.']]);};
+    ['Ali Minhas, Franchise Rep','Stock is the single largest line — '+fmtM(PKG.stock)+' — and it is the part that starts earning from day one.'],
+    ['Ali Minhas, Franchise Rep','Now let me explain what you are paying Servaid itself. This way.']]);};
 }
 
 /* --- 4. fee and security --- */
@@ -1165,8 +1165,8 @@ function stBrand(){
     '<li>Marketing and launch support for the opening</li></ul>'+
     '<button class="act" id="brandNext">Understood</button>');
   document.getElementById('brandNext').onclick=function(){completeStation(2.5,[
-    ['Hamza, Franchise Rep','With that, the turnkey investment adds up to '+fmtM(PKG.total)+'.'],
-    ['Hamza, Franchise Rep','One last thing — what the arrangement costs you every month.']]);};
+    ['Ali Minhas, Franchise Rep','With that, the turnkey investment adds up to '+fmtM(PKG.total)+'.'],
+    ['Ali Minhas, Franchise Rep','One last thing — what the arrangement costs you every month.']]);};
 }
 
 /* --- 5. monthly share --- */
@@ -1196,8 +1196,8 @@ function stTerms(){
     };
   });
   nx.onclick=function(){completeStation(0,[
-    ['Hamza, Franchise Rep','That is the whole model — no hidden line items.'],
-    ['Hamza, Franchise Rep','Take the summary with you, and call us when you want to talk about a site.']]);};
+    ['Ali Minhas, Franchise Rep','That is the whole model — no hidden line items.'],
+    ['Ali Minhas, Franchise Rep','Take the summary with you, and call us when you want to talk about a site.']]);};
 }
 const ST_FN={space:stSpace,fitout:stFitout,stock:stStock,brand:stBrand,terms:stTerms};
 
@@ -1205,9 +1205,9 @@ function interact(){
   const z=activeZone();if(!z)return;
   if(z==='space'&&!greeted){
     greeted=true;stage='walk';
-    say([['Hamza, Franchise Rep','Assalam-o-Alaikum, welcome to Servaid. I am Hamza, from the franchise side.'],
+    say([['Ali Minhas, Franchise Rep','Assalam-o-Alaikum, welcome to Servaid. I am Ali Minhas, from the franchise side.'],
          ['You','I have been thinking about opening one. What does it actually take?'],
-         ['Hamza, Franchise Rep','Walk with me and I will show you every rupee of it, in the order you would spend it.']],
+         ['Ali Minhas, Franchise Rep','Walk with me and I will show you every rupee of it, in the order you would spend it.']],
       function(){ST_FN.space();});
     return;
   }
